@@ -1,6 +1,6 @@
 services:
   gpt4free:
-    image: 'hlohaus702/g4f:latest'
+    image: 'hlohaus702/g4f'
     shm_size: 2gb
     # We remove the 'build' and 'volumes: .:/app' because Coolify 
     # is pulling the image. Mounting '.' often causes errors in Coolify.
