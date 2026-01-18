@@ -1,15 +1,16 @@
 services:
   gpt4free:
-    image: 'hlohaus702/g4f'
+    image: hlohaus789/g4f:latest
     shm_size: 2gb
-    # We remove the 'build' and 'volumes: .:/app' because Coolify 
-    # is pulling the image. Mounting '.' often causes errors in Coolify.
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - '1337:8080'
+      - '7900:7900'
     environment:
       - G4F_PORT=1337
       - G4F_GUI_PORT=1337
       - PORT=1337
-    # We only map 1337 if you want to access it via http://your-ip:1337
-    # If you only use a domain (https://ai.example.com), you can delete 'ports' entirely.
-    ports:
-      - '1337:1337'
-    restart: always
